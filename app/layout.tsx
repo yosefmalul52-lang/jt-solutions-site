@@ -51,13 +51,14 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#F9FAFB" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const gaId = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim();
+  const hasValidGaId = /^G-[A-Z0-9]+$/i.test(gaId);
 
   return (
     <html lang="he" dir="rtl" className={`${heebo.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#F9FAFB] text-gray-900">
         <TrackingProvider>{children}</TrackingProvider>
-        {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+        {hasValidGaId ? <GoogleAnalytics gaId={gaId} /> : null}
         <Suspense fallback={null}>
           <MetaPixel />
         </Suspense>
