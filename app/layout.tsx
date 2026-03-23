@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "he_IL",
-    url: "./",
+    url: "/",
     siteName: "JT Solutions",
     images: [
       {
@@ -38,6 +38,13 @@ export const metadata: Metadata = {
         alt: "JT Solutions - השותף הטכנולוגי שלך בדיגיטל",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JT Solutions | סוכנות דיגיטל ופיתוח",
+    description:
+      "פתרונות דיגיטל מקצה לקצה לעסקים: מאפיון ומיתוג, דרך פיתוח אתרי תדמית וחנויות איקומרס, ועד אוטומציות וניהול קמפיינים.",
+    images: ["/opengraph-image.png"],
   },
 };
 
