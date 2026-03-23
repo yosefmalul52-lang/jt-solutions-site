@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "JT Solutions",
     images: [
       {
-        url: "/logo-main.png",
+        url: "/j-t-logo.PNG",
         width: 1200,
         height: 630,
         alt: "JT Solutions - השותף הטכנולוגי שלך בדיגיטל",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "JT Solutions | סוכנות דיגיטל ופיתוח",
     description:
       "פתרונות דיגיטל מקצה לקצה לעסקים: מאפיון ומיתוג, דרך פיתוח אתרי תדמית וחנויות איקומרס, ועד אוטומציות וניהול קמפיינים.",
-    images: ["/logo-main.png"],
+    images: ["/j-t-logo.PNG"],
   },
 };
 
