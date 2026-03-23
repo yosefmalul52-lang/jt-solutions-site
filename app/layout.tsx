@@ -13,10 +13,32 @@ const heebo = Heebo({
 });
 
 export const metadata: Metadata = {
-  title: "JT Solutions — מעטפת דיגיטלית חכמה לעסקים",
-  description: "מעטפת דיגיטלית מלאה תחת קורת גג אחת: אתר ממיר, מיתוג מדויק וליווי שוטף לצמיחה עסקית ברורה.",
+  metadataBase: new URL("https://jt-solutions-web.vercel.app"),
+  title: {
+    default: "JT Solutions | סוכנות דיגיטל ופיתוח",
+    template: "%s | JT Solutions",
+  },
+  description:
+    "פתרונות דיגיטל מקצה לקצה לעסקים: מאפיון ומיתוג, דרך פיתוח אתרי תדמית וחנויות איקומרס, ועד אוטומציות וניהול קמפיינים.",
   keywords: ["סוכנות דיגיטל", "פיתוח אתרים", "מיתוג", "שיווק דיגיטלי", "דפי נחיתה", "אתרי תדמית"],
-  icons: { icon: "/j-t-logo.PNG" },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "he_IL",
+    url: "./",
+    siteName: "JT Solutions",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "JT Solutions - השותף הטכנולוגי שלך בדיגיטל",
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = { themeColor: "#F9FAFB" };
