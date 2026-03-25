@@ -59,7 +59,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@type": "Organization",
     url: "https://www.jt-solutions.org",
     name: "JT Solutions",
-    logo: "https://www.jt-solutions.org/jt-logo.png",
+    logo: "https://www.jt-solutions.org/logo.png",
   };
 
   return (
