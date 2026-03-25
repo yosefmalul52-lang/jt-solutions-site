@@ -54,14 +54,26 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const gaId = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim();
   const hasValidGaId = /^G-[A-Z0-9]+$/i.test(gaId);
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    url: "https://www.jt-solutions.org",
+    name: "JT Solutions",
+    logo: "https://www.jt-solutions.org/jt-logo.png",
+  };
+
   return (
-    <html lang="he" dir="rtl" className={`${heebo.variable} h-full antialiased`}>
+    <html lang="he-IL" dir="rtl" className={`${heebo.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#F9FAFB] text-gray-900">
         <TrackingProvider>{children}</TrackingProvider>
         {hasValidGaId ? <GoogleAnalytics gaId={gaId} /> : null}
         <Suspense fallback={null}>
           <MetaPixel />
         </Suspense>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
       </body>
     </html>
   );
