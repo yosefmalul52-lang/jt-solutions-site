@@ -57,8 +57,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    url: "https://www.jt-solutions.org",
     name: "JT Solutions",
+    url: "https://www.jt-solutions.org",
     logo: "https://www.jt-solutions.org/logo.png",
   };
 
