@@ -56,10 +56,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
     name: "JT Solutions",
     url: "https://www.jt-solutions.org",
     logo: "https://www.jt-solutions.org/logo.png",
+    image: "https://www.jt-solutions.org/logo.png",
+    telephone: "0528240230",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Kiryat Ata",
+      addressCountry: "IL",
+    },
   };
 
   return (
