@@ -59,6 +59,16 @@ export default function Contact() {
         throw new Error("request_failed");
       }
 
+      // Track successful lead generation (only after API returns OK).
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "generate_lead", { currency: "ILS", value: 100 });
+      }
+
+      // Match Meta Pixel conversion tracking used elsewhere in the project.
+      if (typeof window !== "undefined" && typeof window.fbq === "function") {
+        window.fbq("track", "Lead");
+      }
+
       setIsSuccess(true);
       reset();
     } catch {

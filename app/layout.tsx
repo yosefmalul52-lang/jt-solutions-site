@@ -13,7 +13,7 @@ const heebo = Heebo({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jt-solutions.org"),
+  metadataBase: new URL("https://www.jt-solutions.org"),
   title: {
     default: "JT Solutions | סוכנות דיגיטל ופיתוח",
     template: "%s | JT Solutions",
