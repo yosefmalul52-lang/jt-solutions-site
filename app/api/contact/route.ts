@@ -30,6 +30,17 @@ export async function POST(req: Request) {
       );
     }
 
+    try {
+      await fetch("https://n8n-automation-vqkj.onrender.com/webhook-test/e8685c87-d98e-4ff2-85ae-95751c35fd3d", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+        signal: AbortSignal.timeout(8000),
+      });
+    } catch (webhookError) {
+      console.error("n8n webhook failed:", webhookError);
+    }
+
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
