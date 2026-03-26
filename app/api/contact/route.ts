@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     }
 
     try {
-      await fetch("https://n8n-automation-vqkj.onrender.com/webhook-test/e8685c87-d98e-4ff2-85ae-95751c35fd3d", {
+      await fetch("https://n8n-automation-vqkj.onrender.com/webhook/e8685c87-d98e-4ff2-85ae-95751c35fd3d", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
