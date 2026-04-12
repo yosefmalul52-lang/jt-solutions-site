@@ -5,6 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import TrackingProvider from "@/components/providers/TrackingProvider";
 import MetaPixel from "@/components/analytics/MetaPixel";
+import ScrollProgress from "@/components/layout/ScrollProgress";
 
 const heebo = Heebo({
   variable: "--font-heebo",
@@ -20,7 +21,16 @@ export const metadata: Metadata = {
   },
   description:
     "פתרונות דיגיטל מקצה לקצה לעסקים: מאפיון ומיתוג, דרך פיתוח אתרי תדמית וחנויות איקומרס, ועד אוטומציות וניהול קמפיינים.",
-  keywords: ["סוכנות דיגיטל", "פיתוח אתרים", "מיתוג", "שיווק דיגיטלי", "דפי נחיתה", "אתרי תדמית"],
+  keywords: [
+    "סוכנות דיגיטל",
+    "פיתוח אתרים",
+    "מיתוג",
+    "שיווק דיגיטלי",
+    "דפי נחיתה",
+    "אתרי תדמית",
+    "בוט וואטסאפ",
+    "אוטומציה לעסקים",
+  ],
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon.png",
@@ -72,6 +82,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="he-IL" dir="rtl" className={`${heebo.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#F9FAFB] text-gray-900">
+        <ScrollProgress />
         <TrackingProvider>{children}</TrackingProvider>
         {hasValidGaId ? <GoogleAnalytics gaId={gaId} /> : null}
         <Suspense fallback={null}>

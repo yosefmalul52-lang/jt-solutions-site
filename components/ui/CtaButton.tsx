@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { MoveLeft, type LucideIcon } from "lucide-react";
 import type { MouseEventHandler, ReactNode } from "react";
 
@@ -31,6 +31,7 @@ export default function CtaButton({
   id,
   disabled,
 }: CtaButtonProps) {
+  const reduce = useReducedMotion();
   const baseClass =
     "inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 md:px-9 md:py-3.5 text-sm md:text-base font-medium transition-shadow transition-colors transition-transform duration-200";
 
@@ -62,10 +63,13 @@ export default function CtaButton({
       style={variant === "primary" ? { background: "var(--gradient-cta)", boxShadow: "var(--shadow-glow)" } : undefined}
       onClick={handleClick}
       whileHover={
-        variant === "primary"
-          ? { scale: 1.05, filter: "brightness(1.06)", boxShadow: "var(--shadow-glow-active)" }
-          : { scale: 1.02, backgroundColor: "#F8FAFC", boxShadow: "0 20px 40px -15px rgba(15, 23, 42, 0.08)" }
+        reduce
+          ? undefined
+          : variant === "primary"
+            ? { scale: 1.05, filter: "brightness(1.06)", boxShadow: "var(--shadow-glow-active)" }
+            : { scale: 1.02, backgroundColor: "#F8FAFC", boxShadow: "0 20px 40px -15px rgba(15, 23, 42, 0.08)" }
       }
+      whileTap={reduce ? undefined : { scale: 0.98 }}
       transition={{ duration: 0.1, ease: "easeOut" }}
     >
       <Icon size={18} strokeWidth={2.2} style={{ color: variant === "primary" ? "#ffffff" : "#475569" }} />

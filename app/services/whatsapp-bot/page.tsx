@@ -1,0 +1,63 @@
+import type { Metadata } from "next";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import ServiceTemplate from "@/components/templates/ServiceTemplate";
+import {
+  BotMessageSquare,
+  Clock,
+  ListTree,
+  MessageCircle,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "בוט וואטסאפ לעסקים | JT Solutions - סוכנות דיגיטל",
+  description:
+    "בניית בוט וואטסאפ שמנהל שיחות עם לקוחות: מענה ראשוני, איסוף פרטים, ניתוב לנציג וחיסכון בזמן — בלי לאבד לידים ובלי עומס על הצוות.",
+};
+
+export default function WhatsAppBotPage() {
+  return (
+    <>
+      <Navbar />
+      <main className="flex-1">
+        <ServiceTemplate
+          badge="שלב הגדילה: הנכסים הדיגיטליים"
+          title="בוט וואטסאפ שמנהל את השיחה בשבילכם — ומשאיר לכם את הזמן למה שחשוב"
+          description="אנחנו בונים עבורכם בוט בוואטסאפ שמקבל פניות, עונה לשאלות חוזרות, אוסף מידע מסודר ומעביר לכם רק את מה שבאמת דורש טיפול אנושי. פחות הפרעות, יותר סדר, ולקוחות שמרגישים שקיבלו מענה מהר."
+          targetAudience={[
+            "עסקים שמקבלים הרבה הודעות בוואטסאפ ונתקעים על שאלות חוזרות",
+            "עסקים שרוצים לייצר לידים מסודרים בלי לפספס פניה",
+            "עסקים שצריכים מענה ראשוני מקצועי גם כשאין מישהו פנוי",
+          ]}
+          timeframe="בדרך כלל בין 2 ל-5 שבועות, לפי מורכבות התסריטים והחיבורים הנדרשים."
+          deliverables={[
+            { icon: ListTree, text: "אפיון תסריטי שיחה, שאלות נפוצות ונקודות מעבר לנציג" },
+            { icon: BotMessageSquare, text: "בניית הבוט והטמעה בערוץ הוואטסאפ העסקי" },
+            { icon: MessageCircle, text: "ניסוחים ברורים בעברית שמתאימים לקול המותג שלכם" },
+            { icon: Clock, text: "חיסכון בזמן — סינון פניות, איסוף פרטים ותיעוד בסיסי" },
+            { icon: ShieldCheck, text: "הנחיות פרטיות ושימוש בנתונים בצורה אחראית" },
+            { icon: Sparkles, text: "הדרכה קצרה להפעלה שוטפת ועדכונים לתסריטים" },
+          ]}
+          faq={[
+            {
+              question: "האם הבוט מחליף לגמרי בן אדם?",
+              answer:
+                "לא בהכרח. הוא מטפל בשכבה הראשונה — מידע, סינון ואיסוף פרטים — ומעביר אליכם כשצריך החלטה או מכירה אישית.",
+            },
+            {
+              question: "אפשר לחבר למערכות שאנחנו כבר עובדים איתן?",
+              answer: "בהרבה מקרים כן. בשיחת התאמה נבדוק אילו חיבורים נדרשים ומה הכי פרקטי לעסק שלכם.",
+            },
+            {
+              question: "מה קורה אם לקוח כותב משהו שלא צפינו?",
+              answer: "מגדירים מסלול ברירת מחדל — למשל בקשה לפרטים או העברה לנציג — כדי שלא נשארים בלי מענה.",
+            },
+          ]}
+        />
+      </main>
+      <Footer />
+    </>
+  );
+}

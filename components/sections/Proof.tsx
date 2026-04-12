@@ -1,10 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { BarChart3, Clock3, Image as ImageIcon, MoveLeft, ShieldCheck } from "lucide-react";
+import Reveal from "@/components/motion/Reveal";
 import CtaButton from "@/components/ui/CtaButton";
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const pillars = [
   {
@@ -78,13 +76,7 @@ export default function Proof() {
         style={{ background: "rgba(91,33,182,0.07)", filter: "blur(36px)" }}
       />
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-90px" }}
-          transition={{ duration: 0.65, ease: EASE }}
-          className="text-center mb-14"
-        >
+        <Reveal className="text-center mb-14" viewportKey="sectionProof" y={20} duration={0.65}>
           <span className="premium-badge mb-4">
             למה בוחרים בנו
           </span>
@@ -96,18 +88,18 @@ export default function Proof() {
           <p className="text-sm mt-4" style={{ color: "#64748B" }}>
             פחות ניחושים, יותר תהליך מסודר שמוביל לפניות איכותיות.
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="flex flex-col md:flex-row gap-4 md:gap-5">
           {pillars.map((pillar, i) => {
             const Icon = pillar.icon;
             return (
-              <motion.div
+              <Reveal
                 key={pillar.title}
-                initial={{ opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-70px" }}
-                transition={{ duration: 0.55, delay: i * 0.08, ease: EASE }}
+                viewportKey="sectionPillar"
+                y={26}
+                duration={0.55}
+                delay={i * 0.08}
                 className="p-5 md:p-6 flex-1 bg-white/80 backdrop-blur-md border border-white/40 shadow-premium hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-out rounded-[var(--radius)]"
               >
                 <div className="flex items-start gap-3">
@@ -124,17 +116,16 @@ export default function Proof() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </Reveal>
             );
           })}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: EASE }}
+        <Reveal
           className="mt-10 rounded-[var(--radius)] p-6 sm:p-8 bg-white/90 backdrop-blur-md border border-white/40 shadow-premium"
+          viewportKey="sectionTight"
+          y={22}
+          duration={0.6}
           style={{
             backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.88), rgba(248,250,252,0.9))",
           }}
@@ -162,19 +153,19 @@ export default function Proof() {
           </div>
 
           <div className="mt-7 flex flex-col items-center gap-3">
-            <CtaButton icon={MoveLeft} label="המשך להכיר את הדרך שבה אנחנו עובדים" href="/#about" />
+            <CtaButton icon={MoveLeft} label="לצפייה בפרויקטים נבחרים" href="/#projects" />
             <p className="text-xs text-center" style={{ color: "#64748B" }}>
               מאחורי התהליך עומד שותף אחד שמוביל את הכל מקצה לקצה
             </p>
           </div>
-        </motion.div>
+        </Reveal>
 
-        <motion.article
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: EASE }}
+        <Reveal
+          as="article"
           className="mt-8 rounded-[var(--radius)] p-6 sm:p-8 bg-white/90 backdrop-blur-md border border-white/40 shadow-premium"
+          viewportKey="sectionTight"
+          y={22}
+          duration={0.6}
           style={{
             backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.88), rgba(248,250,252,0.9))",
           }}
@@ -246,15 +237,9 @@ export default function Proof() {
               </div>
             </div>
           </div>
-        </motion.article>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: EASE }}
-          className="mt-8"
-        >
+        <Reveal className="mt-8" viewportKey="sectionTight" y={22} duration={0.6}>
           <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight text-slate-900 text-center mb-6">
             מה אומרים העסקים שעשו את הקפיצה?
           </h3>
@@ -275,7 +260,7 @@ export default function Proof() {
                   <span>★</span>
                 </div>
                 <p className="text-sm leading-relaxed mt-3 text-right" style={{ color: "#475569" }}>
-                  "{item.quote}"
+                  &ldquo;{item.quote}&rdquo;
                 </p>
                 <div className="mt-4 pt-3 border-t border-white/40 text-right">
                   <p className="text-sm font-semibold" style={{ color: "#334155" }}>{item.name}</p>
@@ -284,7 +269,7 @@ export default function Proof() {
               </article>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

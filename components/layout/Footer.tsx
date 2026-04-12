@@ -5,9 +5,11 @@ import Image from "next/image";
 import { Github, Twitter, Linkedin } from "lucide-react";
 
 const quickLinks = [
-  { label: "אודות", href: "/#about" },
   { label: "שירותים", href: "/#services" },
-  { label: "ליווי שוטף", href: "/#tech-stack" },
+  { label: "אודות", href: "/#about" },
+  { label: "הוכחות", href: "/#proof" },
+  { label: "פרויקטים", href: "/#projects" },
+  { label: "אחרי ההשקה", href: "/#tech-stack" },
   { label: "צור קשר", href: "/#contact" },
 ];
 
@@ -84,7 +86,8 @@ export default function Footer() {
                 { label: "אתרי תדמית מותאמים", href: "/services/business-websites" },
                 { label: "חנויות איקומרס חכמות", href: "/services/ecommerce" },
                 { label: "מיתוג וזהות", href: "/services/branding" },
-                { label: "ליווי שוטף וקמפיינים", href: "/services/ad-infrastructure" },
+                { label: "ניהול קמפיינים ותשתית פרסום", href: "/services/ad-infrastructure" },
+                { label: "בוט וואטסאפ ללקוחות", href: "/services/whatsapp-bot" },
               ].map((service) => (
                 <li key={service.href}>
                   <Link href={service.href} className="text-sm transition-colors duration-200"

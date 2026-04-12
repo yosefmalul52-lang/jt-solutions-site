@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Send, MessageCircle, Mail, Phone } from "lucide-react";
+import Reveal from "@/components/motion/Reveal";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -12,14 +13,13 @@ import {
   type ContactPayloadInput,
 } from "@/lib/validation/contact";
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-
 type ContactFormData = ContactPayload;
 
 const inputClass = "rounded-2xl bg-[#F9FAFB] border border-[rgba(0,0,0,0.08)] text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100 transition-all duration-200 w-full px-4 py-3";
 const labelClass = "block text-xs font-semibold text-gray-600 mb-1.5";
 
 export default function Contact() {
+  const reduce = useReducedMotion();
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -84,13 +84,7 @@ export default function Contact() {
         style={{ background: "linear-gradient(180deg, #F1F5FF 0%, #F8FAFF 45%, #F9FAFB 100%)" }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: EASE }}
-            className="text-center mb-16"
-          >
+          <Reveal className="text-center mb-16" viewportKey="section" y={24} duration={0.6}>
             <span className="premium-badge mb-4">
               יוצאים לדרך
             </span>
@@ -105,15 +99,16 @@ export default function Contact() {
             <p className="text-sm mt-3" style={{ color: "#64748B" }}>
               חוזרים אליכם עד 24 שעות, ובשיחה תקבלו המלצה ברורה למסלול שמתאים לעסק.
             </p>
-          </motion.div>
+          </Reveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
+            <Reveal
               className="lg:col-span-2 flex flex-col gap-5"
+              viewportKey="inView"
+              x={-24}
+              y={0}
+              duration={0.6}
+              delay={0.1}
             >
               <div className="p-6 space-y-6 rounded-[32px]"
                 style={{ background: "rgba(255,255,255,0.86)", border: "1px solid rgba(15,23,42,0.08)", boxShadow: "0 16px 38px rgba(15,23,42,0.08)" }}>
@@ -154,14 +149,15 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
 
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
+            <Reveal
               className="lg:col-span-3"
+              viewportKey="inView"
+              x={24}
+              y={0}
+              duration={0.6}
+              delay={0.2}
             >
               <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -303,7 +299,7 @@ export default function Contact() {
                   מענה אישי תוך 24 שעות בימי עסקים
                 </p>
               </form>
-            </motion.div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -313,11 +309,15 @@ export default function Contact() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="שיחה ב-WhatsApp"
-        initial={{ scale: 0, opacity: 0 }}
+        initial={reduce === true ? false : { scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1.5, type: "spring", stiffness: 200, damping: 15 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        transition={
+          reduce === true
+            ? { duration: 0.01 }
+            : { delay: 1.5, type: "spring", stiffness: 200, damping: 15 }
+        }
+        whileHover={reduce ? undefined : { scale: 1.1 }}
+        whileTap={reduce ? undefined : { scale: 0.95 }}
         className="hidden md:flex fixed bottom-6 left-6 z-50 w-14 h-14 rounded-[22px] bg-emerald-500 hover:bg-emerald-400 items-center justify-center transition-colors duration-200"
         style={{ boxShadow: "0 8px 24px rgba(16,185,129,0.4)" }}
       >

@@ -1,7 +1,7 @@
-import { type LucideIcon } from "lucide-react";
+import { Home, LayoutGrid, MessageCircle, type LucideIcon } from "lucide-react";
+import PageEnter from "@/components/motion/PageEnter";
 import CtaButton from "@/components/ui/CtaButton";
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+import OutlineNavLink from "@/components/ui/OutlineNavLink";
 
 export interface ServiceDeliverableItem {
   icon: LucideIcon;
@@ -34,8 +34,21 @@ export default function ServiceTemplate({
 }: ServiceTemplateProps) {
   return (
     <div className="bg-[#F9FAFB]">
+      <PageEnter>
       <section className="py-32">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-10" dir="rtl">
+            <OutlineNavLink href="/" icon={Home}>
+              חזרה לדף הבית
+            </OutlineNavLink>
+            <OutlineNavLink href="/#services" icon={LayoutGrid}>
+              מפת השירותים
+            </OutlineNavLink>
+            <OutlineNavLink href="/#contact" icon={MessageCircle}>
+              צור קשר
+            </OutlineNavLink>
+          </div>
+          <div className="text-center">
           <span
             className="inline-flex p-[1px] rounded-full mb-5"
             style={{ background: "var(--gradient-cta)" }}
@@ -50,6 +63,7 @@ export default function ServiceTemplate({
           <p className="text-base sm:text-lg leading-[1.7] text-slate-500 max-w-3xl mx-auto mt-6">
             {description}
           </p>
+          </div>
         </div>
       </section>
 
@@ -131,11 +145,12 @@ export default function ServiceTemplate({
               בשיחה קצרה נמפה את הצרכים ונמליץ על המסלול המדויק לעסק שלך.
             </p>
             <div className="flex justify-center">
-              <CtaButton>אני רוצה אבחון לעסק שלי</CtaButton>
+              <CtaButton href="/#contact">אני רוצה אבחון לעסק שלי</CtaButton>
             </div>
           </div>
         </div>
       </section>
+      </PageEnter>
     </div>
   );
 }

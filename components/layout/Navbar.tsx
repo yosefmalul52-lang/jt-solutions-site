@@ -10,9 +10,11 @@ import { Menu, X } from "lucide-react";
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const navLinks = [
-  { label: "אודות", href: "/#about" },
   { label: "שירותים", href: "/#services" },
-  { label: "ליווי שוטף", href: "/#tech-stack" },
+  { label: "אודות", href: "/#about" },
+  { label: "הוכחות", href: "/#proof" },
+  { label: "פרויקטים", href: "/#projects" },
+  { label: "אחרי ההשקה", href: "/#tech-stack" },
   { label: "צור קשר", href: "/#contact" },
 ];
 
@@ -30,7 +32,16 @@ export default function Navbar() {
 
   useEffect(() => {
     if (pathname !== "/") return;
-    const sectionIds = ["#hero", "#proof", "#about", "#services", "#tech-stack", "#contact"];
+    const sectionIds = [
+      "#hero",
+      "#services",
+      "#about",
+      "#proof",
+      "#projects",
+      "#pricing",
+      "#tech-stack",
+      "#contact",
+    ];
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -95,21 +106,30 @@ export default function Navbar() {
           </Link>
 
           <ul className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className={`px-4 py-2 text-sm font-semibold rounded-2xl transition-all duration-200 ${
-                    activeHash === link.href.slice(1)
-                      ? "text-slate-900 bg-white/80 shadow-[0_8px_24px_rgba(15,23,42,0.08)]"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-white/70"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const active = activeHash === link.href.slice(1);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => handleNavClick(link.href)}
+                    className={`relative block px-4 py-2 text-sm font-semibold rounded-2xl transition-colors duration-200 ${
+                      active ? "text-slate-900" : "text-slate-600 hover:text-slate-900 hover:bg-white/70"
+                    }`}
+                  >
+                    {active ? (
+                      <motion.span
+                        layoutId="navActivePill"
+                        className="absolute inset-0 rounded-2xl bg-white/80 shadow-[0_8px_24px_rgba(15,23,42,0.08)] -z-10"
+                        transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                        aria-hidden
+                      />
+                    ) : null}
+                    <span className="relative z-10">{link.label}</span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           <div className="flex items-center gap-3">

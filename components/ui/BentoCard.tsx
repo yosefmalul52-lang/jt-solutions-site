@@ -1,9 +1,8 @@
 "use client";
 
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+import { motion, useReducedMotion } from "framer-motion";
+import { EASE, motionTransition, viewport as motionViewport } from "@/lib/motion";
 
 interface BentoCardProps {
   children: ReactNode;
@@ -18,12 +17,13 @@ export default function BentoCard({
   className = "",
   delay = 0,
 }: BentoCardProps) {
+  const reduce = useReducedMotion();
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={reduce === true ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay, ease: EASE }}
+      viewport={motionViewport.sectionTight}
+      transition={motionTransition(reduce, { duration: 0.55, delay, ease: EASE })}
       className={`
         relative rounded-2xl overflow-hidden
         bg-white border border-slate-200
